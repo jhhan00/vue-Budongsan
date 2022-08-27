@@ -1,22 +1,15 @@
 <template>
 
-  <!-- 모달창(팝업창) -->
-  <div class="black-bg" v-if="modalOpen">
-    <div class="white-bg">
-      <img class="room-img" :src="rooms[pressNum].image">
-      <h4> {{ rooms[pressNum].title }} </h4>
-      <p> {{ rooms[pressNum].content }} </p>
-      <p> {{ rooms[pressNum].price }} 원</p>
-      <button @click="modalOpen = false">닫기</button>
-    </div>
-  </div>
-  <!-- 모달창(팝업창) -->
+  <Modal/>
 
   <div class="menu">
     <a v-for="(menu, idx) in menus" :key="idx">
       {{ menu }}
     </a>
   </div>
+
+  <Discount/>
+
   <div v-for="(room, idx) in rooms" :key="idx">
     <img :src="room.image" class="room-img">
     <h4 @click="modalOpen = true; pressNum = idx;"> {{ room.title }} </h4>
@@ -25,12 +18,16 @@
 </template>
 
 <script>
+import Discount from './components/Discount.vue';
+import Modal from './components/Modal.vue';
 
 import oneroom from './assets/oneroom.js';
 
 export default {
   name: 'App',
   components: {
+    Discount : Discount,
+    Modal : Modal,
   },
   data() {
     return {
@@ -70,7 +67,7 @@ div {
   width: 100%;
   background: white;
   border-radius: 8px;
-  padding: 2;
+  padding: 15px;
 }
 
 #app {
@@ -84,7 +81,7 @@ div {
 .menu {
   background-color: darkslateblue;
   padding: 15px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .menu a {
@@ -94,7 +91,7 @@ div {
 
 .room-img {
   width: 90%;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 </style>
