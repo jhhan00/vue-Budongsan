@@ -1,11 +1,16 @@
 <template>
+
+  <!-- 모달창(팝업창) -->
   <div class="black-bg" v-if="modalOpen">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
+      <img class="room-img" :src="rooms[pressNum].image">
+      <h4> {{ rooms[pressNum].title }} </h4>
+      <p> {{ rooms[pressNum].content }} </p>
+      <p> {{ rooms[pressNum].price }} 원</p>
       <button @click="modalOpen = false">닫기</button>
     </div>
   </div>
+  <!-- 모달창(팝업창) -->
 
   <div class="menu">
     <a v-for="(menu, idx) in menus" :key="idx">
@@ -14,24 +19,9 @@
   </div>
   <div v-for="(room, idx) in rooms" :key="idx">
     <img :src="room.image" class="room-img">
-    <h4> {{ room.title }} </h4>
+    <h4 @click="modalOpen = true; pressNum = idx;"> {{ room.title }} </h4>
     <p> {{ room.price }} 원</p>
   </div>
-  <!-- <div>
-    <img :src="rooms[0].image" class="room-img">
-    <h4> {{ rooms[0].title }} </h4>
-    <p> {{ rooms[0].price }} 원 </p>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4> {{ products[1] }} </h4>
-    <p>70 만원</p>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4> {{ products[2] }} </h4>
-    <p>50 만원</p>
-  </div> -->
 </template>
 
 <script>
@@ -44,11 +34,11 @@ export default {
   },
   data() {
     return {
-      products : ['역삼동원룸', '천호동원룸','마포구원룸'],
       menus : ['Home', 'Shop', 'About'],
       notify : [0,0,0],
       modalOpen : false,
       rooms : oneroom,
+      pressNum : 0,
     }
   },
   methods : {
