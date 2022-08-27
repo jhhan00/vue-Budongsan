@@ -3,7 +3,8 @@
   <Modal 
     :rooms="rooms" 
     :pressNum="pressNum" 
-    :modalOpen="modalOpen">
+    :modalOpen="modalOpen"
+    @closeModal="modalOpen = false">
   </Modal>
 
   <div class="menu">
@@ -17,7 +18,8 @@
   <Card 
     v-for="(room, idx) in rooms"
     :key="idx"
-    :room="room">
+    :room="room"
+    @openModal="modalOpen = true; pressNum = $event">
   </Card>
   <!-- <div v-for="(room, idx) in rooms" :key="idx">
     <img :src="room.image" class="room-img">

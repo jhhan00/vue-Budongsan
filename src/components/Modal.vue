@@ -6,7 +6,7 @@
       <h4> {{ rooms[pressNum].title }} </h4>
       <p> {{ rooms[pressNum].content }} </p>
       <p> {{ rooms[pressNum].price }} 원</p>
-      <!-- <button @click="modalOpen = false">닫기</button> -->
+      <button @click="modalCloseFunc">닫기</button>
     </div>
   </div>
   <!-- 모달창(팝업창) -->
@@ -24,6 +24,11 @@ export default {
     data() {
         return {
 
+        }
+    },
+    methods : {
+        modalCloseFunc() {
+            this.$emit('closeModal');
         }
     },
 }
