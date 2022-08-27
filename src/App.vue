@@ -12,36 +12,31 @@
       {{ menu }}
     </a>
   </div>
-  <!-- <div v-for="(p, idx) in products" :key="idx">
-    <h4> {{ p }} </h4>
-    <p>80 만원</p>
-    <button @click="increase(idx)">허위매물신고</button>
-    <span>신고수 : {{notify[idx]}} </span>
-  </div> -->
-  <div>
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="modalOpen = true"> {{ products[0] }} </h4>
-    <p>80 만원</p>
-    <button @click="increase(0)">허위매물신고</button>
-    <span>신고수 : {{notify[0]}} </span>
+  <div v-for="(room, idx) in rooms" :key="idx">
+    <img :src="room.image" class="room-img">
+    <h4> {{ room.title }} </h4>
+    <p> {{ room.price }} 원</p>
+  </div>
+  <!-- <div>
+    <img :src="rooms[0].image" class="room-img">
+    <h4> {{ rooms[0].title }} </h4>
+    <p> {{ rooms[0].price }} 원 </p>
   </div>
   <div>
     <img src="./assets/room1.jpg" class="room-img">
     <h4> {{ products[1] }} </h4>
     <p>70 만원</p>
-    <button @click="increase(1)">허위매물신고</button>
-    <span>신고수 : {{notify[1]}} </span>
   </div>
   <div>
     <img src="./assets/room2.jpg" class="room-img">
     <h4> {{ products[2] }} </h4>
     <p>50 만원</p>
-    <button @click="increase(2)">허위매물신고</button>
-    <span>신고수 : {{notify[2]}} </span>
-  </div>
+  </div> -->
 </template>
 
 <script>
+
+import oneroom from './assets/oneroom.js';
 
 export default {
   name: 'App',
@@ -53,6 +48,7 @@ export default {
       menus : ['Home', 'Shop', 'About'],
       notify : [0,0,0],
       modalOpen : false,
+      rooms : oneroom,
     }
   },
   methods : {
@@ -107,7 +103,7 @@ div {
 }
 
 .room-img {
-  width: 100%;
+  width: 90%;
   margin-top: 40px;
 }
 
