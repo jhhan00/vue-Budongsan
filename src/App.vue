@@ -1,6 +1,10 @@
 <template>
 
-  <Modal/>
+  <Modal 
+    :rooms="rooms" 
+    :pressNum="pressNum" 
+    :modalOpen="modalOpen">
+  </Modal>
 
   <div class="menu">
     <a v-for="(menu, idx) in menus" :key="idx">
