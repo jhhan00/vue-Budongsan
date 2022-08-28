@@ -5,7 +5,7 @@
       <img :src="rooms[pressNum].image" style="width: 90%;">
       <h4> {{ rooms[pressNum].title }} </h4>
       <p> {{ rooms[pressNum].content }} </p>
-      <input v-model.number="month" /> {{month}}
+      <input v-model.number="month" />
       <p> {{month}} 개월 선택함 : {{ rooms[pressNum].price * month}} 원</p>
       <button @click="modalCloseFunc">닫기</button>
     </div>
@@ -24,7 +24,7 @@ export default {
     },
     data() {
         return {
-            month : 1,
+            month : 3,
         }
     },
     methods : {
@@ -40,9 +40,17 @@ export default {
             // 사용자가 month에 숫자가 아닌 것을 입력하면 경고문 등장
             if(isNaN(newMonth)) {
                 alert("숫자만 입력하세요.");
-                this.month = 1;
+                this.month = 3;
             }
         },
+    },
+    updated() {
+        if(this.month == undefined || this.month == "") {
+            return;
+        } else if(this.month <= 2) {
+            alert("2개월 이하는 계약할 수 없습니다.");
+            this.month = 3;
+        }
     },
 }
 </script>
