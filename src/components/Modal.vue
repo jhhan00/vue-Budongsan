@@ -34,8 +34,11 @@ export default {
     },
     watch : {
         month(newMonth) {
+            if(newMonth == undefined || newMonth == "") {
+                return;
+            }
             // 사용자가 month에 숫자가 아닌 것을 입력하면 경고문 등장
-            if(isNaN(parseInt(newMonth))) {
+            if(isNaN(newMonth)) {
                 alert("숫자만 입력하세요.");
                 this.month = 1;
             }
