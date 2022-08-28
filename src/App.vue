@@ -25,17 +25,18 @@
 
   <Discount/>
 
+  <button @click="initSort">되돌리기</button>
+  <button @click="priceAscSort">가격 정렬</button>
+  <button @click="priceDescSort">가격 역정렬</button>
+  <button @click="productNameSort">상품명 정렬</button>
+
   <Card 
     v-for="(room, idx) in rooms"
     :key="idx"
     :room="room"
     @openModal="modalOpen = true; pressNum = $event">
   </Card>
-  <!-- <div v-for="(room, idx) in rooms" :key="idx">
-    <img :src="room.image" class="room-img">
-    <h4 @click="modalOpen = true; pressNum = idx;"> {{ room.title }} </h4>
-    <p> {{ room.price }} 원</p>
-  </div> -->
+  
 </template>
 
 <script>
@@ -58,12 +59,36 @@ export default {
       notify : [0,0,0],
       modalOpen : false,
       rooms : oneroom,
+      originRooms : [...oneroom],
       pressNum : 0,
     }
   },
   methods : {
     increase(num) {
       this.notify[num] += 1;
+    },
+    initSort() {
+      this.rooms = [...this.originRooms];
+    },
+    priceAscSort() {
+      this.rooms.sort(function(r1,r2) {
+        return r1.price - r2.price;
+      });
+    },
+    priceDescSort() {
+      this.rooms.sort(function(r1, r2) {
+        return r2.price - r1.price;
+      });
+    },
+    productNameSort() {
+      this.rooms.sort(function(r1, r2) {
+        var x = r1.title.toLowerCase();
+        var y = r2.title.toLowerCase();
+
+        if(x > y) return 1;
+        else if(x < y) return -1;
+        return 0;
+      });
     },
   },
 }
