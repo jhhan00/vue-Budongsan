@@ -23,7 +23,9 @@
     </a>
   </div>
 
-  <Discount/>
+  <Discount
+    v-if="showDiscount"
+    :discountNum="discountNum"/>
 
   <button @click="initSort">되돌리기</button>
   <button @click="priceAscSort">가격 정렬</button>
@@ -36,7 +38,7 @@
     :room="room"
     @openModal="modalOpen = true; pressNum = $event">
   </Card>
-  
+
 </template>
 
 <script>
@@ -61,6 +63,8 @@ export default {
       rooms : oneroom,
       originRooms : [...oneroom],
       pressNum : 0,
+      discountNum : 10,
+      showDiscount : true,
     }
   },
   methods : {
@@ -90,6 +94,11 @@ export default {
         return 0;
       });
     },
+  },
+  mounted() {
+    setInterval(() => {
+      if(this.discountNum > 0) this.discountNum -= 1;
+    }, 1000);
   },
 }
 </script>
