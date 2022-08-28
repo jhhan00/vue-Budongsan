@@ -1,11 +1,21 @@
 <template>
+  <!-- <div class="start" :class="{ end : modalOpen }">
+    <Modal 
+      :rooms="rooms" 
+      :pressNum="pressNum" 
+      :modalOpen="modalOpen"
+      @closeModal="modalOpen = false">
+    </Modal>
+  </div> -->
 
-  <Modal 
-    :rooms="rooms" 
-    :pressNum="pressNum" 
-    :modalOpen="modalOpen"
-    @closeModal="modalOpen = false">
-  </Modal>
+  <transition name="fade">
+    <Modal 
+      :rooms="rooms" 
+      :pressNum="pressNum" 
+      :modalOpen="modalOpen"
+      @closeModal="modalOpen = false">
+    </Modal>
+  </transition>
 
   <div class="menu">
     <a v-for="(menu, idx) in menus" :key="idx">
@@ -68,6 +78,15 @@ div {
   box-sizing: border-box;
 }
 
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.end {
+  opacity: 1;
+}
+
 .black-bg {
   width: 100%;
   height: 100%;
@@ -105,6 +124,35 @@ div {
 .room-img {
   width: 90%;
   margin-top: 20px;
+}
+
+
+.fade-enter-from {
+  /* 시작 시 */
+  /* opacity: 0; */
+  transform: translateY(-1000px);
+}
+.fade-enter-active {
+  /* 애니메이션 효과 진행 */
+  transition: all 1s;
+}
+.fade-enter-to {
+  /* 끝날 시 */
+  /* opacity: 1; */
+  transform: translateY(0px);
+}
+
+.fade-leave-from {
+  /* 시작 시 */
+  opacity: 1;
+}
+.fade-leave-active {
+  /* 애니메이션 효과 진행 */
+  transition: all 1s;
+}
+.fade-leave-to {
+  /* 끝날 시 */
+  opacity: 0;
 }
 
 </style>
