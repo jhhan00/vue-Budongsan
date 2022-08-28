@@ -126,7 +126,9 @@ div {
   margin-top: 20px;
 }
 
-
+/**
+  transition 태그에서 모달창이 열릴 때 실행되는 css
+ */
 .fade-enter-from {
   /* 시작 시 */
   /* opacity: 0; */
@@ -142,6 +144,9 @@ div {
   transform: translateY(0px);
 }
 
+/**
+  transition 태그에서 모달창이 닫힐 때 실행되는 css
+ */
 .fade-leave-from {
   /* 시작 시 */
   opacity: 1;
