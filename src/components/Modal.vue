@@ -5,7 +5,8 @@
       <img :src="rooms[pressNum].image" style="width: 90%;">
       <h4> {{ rooms[pressNum].title }} </h4>
       <p> {{ rooms[pressNum].content }} </p>
-      <p> {{ rooms[pressNum].price }} 원</p>
+      <input v-model.number="month" />
+      <p> {{month}} 개월 선택함 : {{ rooms[pressNum].price * month}} 원</p>
       <button @click="modalCloseFunc">닫기</button>
     </div>
   </div>
@@ -23,7 +24,7 @@ export default {
     },
     data() {
         return {
-
+            month : 1,
         }
     },
     methods : {
